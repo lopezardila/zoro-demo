@@ -5,10 +5,9 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { PrimaryButton } from "components";
 import { useAuth } from "context/AuthContext";
-import React, {useState} from "react";
+import React from "react";
 import { useTranslation } from "translation";
 import { useConnectWallet } from "@web3-onboard/react";
-import MM from "../../../components/MM"
 
 
 export interface ConnectWalletBannerUiProps {
@@ -24,7 +23,6 @@ export const ConnectWalletBannerUi: React.FC<ConnectWalletBannerUiProps> = ({
   const { t } = useTranslation();
   const styles = useStyles();
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
-  const [isModalOpen, setModalOpen] = useState(false)
 
   if (isWalletConnected) {
     return null;
@@ -45,15 +43,11 @@ export const ConnectWalletBannerUi: React.FC<ConnectWalletBannerUiProps> = ({
           {t("dashboard.connectWalletBanner.description")}
         </Typography>
 
-        <PrimaryButton css={styles.button} onClick={() => {setModalOpen(true)}} className="custom-btn-wrap">
+        <PrimaryButton css={styles.button} onClick={wallet ? openAuthModal : async () => await connect()} className="custom-btn-wrap">
           {t("dashboard.connectWalletBanner.buttonLabel")}
         </PrimaryButton>
       </div>
 
-      <MM 
-        isOpen={isModalOpen}
-        setIsOpen={setModalOpen}
-      ></MM>
       {/* <div css={styles.illustrationContainer}>
         <img
           src={illustration}

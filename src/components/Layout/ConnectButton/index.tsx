@@ -5,10 +5,9 @@ import { ApproveToken } from "components";
 // TESTING
 import { TOKENS } from "constants/tokens";
 import { useAuth } from "context/AuthContext";
-import React, {useState} from "react";
+import React from "react";
 import { useTranslation } from "translation";
 import { truncateAddress } from "utilities";
-import MM from "../../MM"
 
 export interface ConnectButtonProps extends ButtonProps {
   accountAddress?: string;
@@ -39,23 +38,15 @@ export const ConnectButtonUi: React.FC<ConnectButtonProps> = ({
 export const ConnectButton: React.FC<ButtonProps> = (props) => {
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
   const { accountAddress, openAuthModal } = useAuth();
-  const [isModalOpen, setModalOpen] = useState(false)
+
   return (
-    <>
     <ConnectButtonUi
       accountAddress={accountAddress}
-      onClick={() => {
-        setModalOpen(true)
-      }}
+      onClick={wallet ? openAuthModal : async () => await connect()}
       variant={wallet ? "secondary" : "primary"}
       {...props}
       className="custom-btn-wrap"
-      />
-      <MM 
-        isOpen={isModalOpen}
-        setIsOpen={setModalOpen}
-      ></MM>
-    </>
+    />
   );
 };
 
